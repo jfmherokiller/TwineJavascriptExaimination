@@ -1,6 +1,3 @@
 /**
- * Created by jfmmeyers on 6/6/16.
+ * Created by jfmmeyers on 6/8/16.
  */
-(function() {
-
-}());
