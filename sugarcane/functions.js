@@ -13,12 +13,11 @@
 // A DOM element, or null if none with the id exist.
 //
 
-function $ (id)
-{
-	if (typeof id == 'string')
-		return document.getElementById(id);
-	else
-		return id;	
+function $(id) {
+    if (typeof id == 'string')
+        return document.getElementById(id);
+    else
+        return id;
 }
 
 //
@@ -32,14 +31,13 @@ function $ (id)
 // The copied object.
 //
 
-function clone (original)
-{
-	var clone = {};
+function clone(original) {
+    var clone = {};
 
-	for (property in original)
-		clone[property] = original[property];
-	
-	return clone;
+    for (property in original)
+        clone[property] = original[property];
+
+    return clone;
 };
 
 //
@@ -59,23 +57,22 @@ function clone (original)
 // The newly created element.
 //
 
-function insertElement (place, type, id, className, text)
-{
-	var el = document.createElement(type);
-	
-	if (id)
-		el.id = id;
+function insertElement(place, type, id, className, text) {
+    var el = document.createElement(type);
 
-	if (className)
-		el.className = className;
-	
-	if (text)
-		insertText(el, text);
-		
-	if (place)
-		place.appendChild(el);
-		
-	return el;
+    if (id)
+        el.id = id;
+
+    if (className)
+        el.className = className;
+
+    if (text)
+        insertText(el, text);
+
+    if (place)
+        place.appendChild(el);
+
+    return el;
 };
 
 //
@@ -90,9 +87,8 @@ function insertElement (place, type, id, className, text)
 // The newly created DOM text node.
 //
 
-function insertText (place, text)
-{
-	return place.appendChild(document.createTextNode(text));
+function insertText(place, text) {
+    return place.appendChild(document.createTextNode(text));
 };
 
 //
@@ -106,10 +102,9 @@ function insertText (place, text)
 // nothing
 //
 
-function removeChildren (el)
-{
-	while (el.hasChildNodes())
-		el.removeChild(el.firstChild);
+function removeChildren(el) {
+    while (el.hasChildNodes())
+        el.removeChild(el.firstChild);
 };
 
 //
@@ -128,17 +123,16 @@ function removeChildren (el)
 // <Wikifier>
 //
 
-function setPageElement (id, title, defaultText)
-{	
-	if (place = $(id))
-	{
-		removeChildren(place);
-		
-		if (tale.has(title))
-			new Wikifier(place, tale.get(title).text);
-		else
-			new Wikifier(place, defaultText);
-	};
+function setPageElement(id, title, defaultText) {
+    if (place = $(id)) {
+        removeChildren(place);
+
+        if (tale.has(title))
+            new Wikifier(place, tale.get(title).text);
+        else
+            new Wikifier(place, defaultText);
+    }
+    ;
 };
 
 //
@@ -152,19 +146,16 @@ function setPageElement (id, title, defaultText)
 // nothing
 //
 
-function addStyle (source)
-{
-	if (document.createStyleSheet) 
-	{
-		document.getElementsByTagName('head')[0].insertAdjacentHTML('beforeEnd', '&nbsp;<style>' + source + '</style>');
-	}
-	else
-	{
-		var el = document.createElement("style");
-		el.type = "text/css";
-		el.appendChild(document.createTextNode(source));
-		document.getElementsByTagName("head")[0].appendChild(el);
-	}
+function addStyle(source) {
+    if (document.createStyleSheet) {
+        document.getElementsByTagName('head')[0].insertAdjacentHTML('beforeEnd', '&nbsp;<style>' + source + '</style>');
+    }
+    else {
+        var el = document.createElement("style");
+        el.type = "text/css";
+        el.appendChild(document.createTextNode(source));
+        document.getElementsByTagName("head")[0].appendChild(el);
+    }
 };
 
 //
@@ -179,9 +170,8 @@ function addStyle (source)
 // nothing
 //
 
-function throwError (place, message)
-{
-	new Wikifier(place, "'' @@ " + message + " @@ ''");
+function throwError(place, message) {
+    new Wikifier(place, "'' @@ " + message + " @@ ''");
 };
 
 //
@@ -195,9 +185,8 @@ function throwError (place, message)
 // The eased value.
 //
 
-Math.easeInOut = function (i)
-{
-	return(1-((Math.cos(i * Math.PI)+1)/2));	
+Math.easeInOut = function (i) {
+    return (1 - ((Math.cos(i * Math.PI) + 1) / 2));
 };
 
 //
@@ -211,25 +200,23 @@ Math.easeInOut = function (i)
 // An array of parameters.
 //
 
-String.prototype.readMacroParams = function()
-{
-	var regexpMacroParam = new RegExp("(?:\\s*)(?:(?:\"([^\"]*)\")|(?:'([^']*)')|(?:\\[\\[([^\\]]*)\\]\\])|([^\"'\\s]\\S*))","mg");
-	var params = [];
-	do {
-		var match = regexpMacroParam.exec(this);
-		if(match)
-			{
-			if(match[1]) // Double quoted
-				params.push(match[1]);
-			else if(match[2]) // Single quoted
-				params.push(match[2]);
-			else if(match[3]) // Double-square-bracket quoted
-				params.push(match[3]);
-			else if(match[4]) // Unquoted
-				params.push(match[4]);
-			}
-	} while(match);
-	return params;
+String.prototype.readMacroParams = function () {
+    var regexpMacroParam = new RegExp("(?:\\s*)(?:(?:\"([^\"]*)\")|(?:'([^']*)')|(?:\\[\\[([^\\]]*)\\]\\])|([^\"'\\s]\\S*))", "mg");
+    var params = [];
+    do {
+        var match = regexpMacroParam.exec(this);
+        if (match) {
+            if (match[1]) // Double quoted
+                params.push(match[1]);
+            else if (match[2]) // Single quoted
+                params.push(match[2]);
+            else if (match[3]) // Double-square-bracket quoted
+                params.push(match[3]);
+            else if (match[4]) // Unquoted
+                params.push(match[4]);
+        }
+    } while (match);
+    return params;
 }
 
 //
@@ -243,24 +230,22 @@ String.prototype.readMacroParams = function()
 // an array of link titles.
 //
 
-String.prototype.readBracketedList = function()
-{
-	var bracketedPattern = "\\[\\[([^\\]]+)\\]\\]";
-	var unbracketedPattern = "[^\\s$]+";
-	var pattern = "(?:" + bracketedPattern + ")|(" + unbracketedPattern + ")";
-	var re = new RegExp(pattern,"mg");
-	var tiddlerNames = [];
-	do {
-		var match = re.exec(this);
-		if(match)
-			{
-			if(match[1]) // Bracketed
-				tiddlerNames.push(match[1]);
-			else if(match[2]) // Unbracketed
-				tiddlerNames.push(match[2]);
-			}
-	} while(match);
-	return(tiddlerNames);
+String.prototype.readBracketedList = function () {
+    var bracketedPattern = "\\[\\[([^\\]]+)\\]\\]";
+    var unbracketedPattern = "[^\\s$]+";
+    var pattern = "(?:" + bracketedPattern + ")|(" + unbracketedPattern + ")";
+    var re = new RegExp(pattern, "mg");
+    var tiddlerNames = [];
+    do {
+        var match = re.exec(this);
+        if (match) {
+            if (match[1]) // Bracketed
+                tiddlerNames.push(match[1]);
+            else if (match[2]) // Unbracketed
+                tiddlerNames.push(match[2]);
+        }
+    } while (match);
+    return (tiddlerNames);
 }
 
 //
@@ -274,9 +259,8 @@ String.prototype.readBracketedList = function()
 // The trimmed string.
 //
 
-String.prototype.trim = function()
-{
-	return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+String.prototype.trim = function () {
+    return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
 }
 
 //
@@ -284,10 +268,11 @@ String.prototype.trim = function()
 // Works like String.indexOf.
 //
 
-Array.prototype.indexOf || (Array.prototype.indexOf = function(v,n){
-  n = (n==null)?0:n; var m = this.length;
-  for(var i = n; i < m; i++)
-    if(this[i] == v)
-       return i;
-  return -1;
+Array.prototype.indexOf || (Array.prototype.indexOf = function (v, n) {
+    n = (n == null) ? 0 : n;
+    var m = this.length;
+    for (var i = n; i < m; i++)
+        if (this[i] == v)
+            return i;
+    return -1;
 });

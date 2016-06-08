@@ -40,26 +40,24 @@
 // This parameter is optional, but should be included if el is specified.
 //
 
-function Passage (title, el, order)
-{	
-	this.title = title;
+function Passage(title, el, order) {
+    this.title = title;
 
-	if (el)
-	{
-		this.id = order;	
-		this.initialText = this.text = Passage.unescapeLineBreaks(el.firstChild ? el.firstChild.nodeValue : "");
-		this.tags = el.getAttribute("tags");
-		
-		if (typeof this.tags == 'string')
-			this.tags = this.tags.readBracketedList();
-		else
-			this.tags = [];
-	}
-	else
-	{
-		this.initialText = this.text = '@@This passage does not exist.@@';
-		this.tags = [];
-	};
+    if (el) {
+        this.id = order;
+        this.initialText = this.text = Passage.unescapeLineBreaks(el.firstChild ? el.firstChild.nodeValue : "");
+        this.tags = el.getAttribute("tags");
+
+        if (typeof this.tags == 'string')
+            this.tags = this.tags.readBracketedList();
+        else
+            this.tags = [];
+    }
+    else {
+        this.initialText = this.text = '@@This passage does not exist.@@';
+        this.tags = [];
+    }
+    ;
 };
 
 //
@@ -76,23 +74,22 @@ function Passage (title, el, order)
 // nothing
 //
 
-Passage.prototype.render = function()
-{
-	// construct passage
-	
-	var passage = insertElement(null, 'div', 'passage' + this.title.split(' ').join('_'), 'passage');
-	passage.style.visibility = 'hidden';
-	
-	insertElement(passage, 'div', '', 'header');
-		
-	var body = insertElement(passage, 'div', '', 'content');
-	new Wikifier(body, this.text);
-	
-	insertElement(passage, 'div', '', 'footer');
-	
-	console.log(passage);
-	
-	return passage;
+Passage.prototype.render = function () {
+    // construct passage
+
+    var passage = insertElement(null, 'div', 'passage' + this.title.split(' ').join('_'), 'passage');
+    passage.style.visibility = 'hidden';
+
+    insertElement(passage, 'div', '', 'header');
+
+    var body = insertElement(passage, 'div', '', 'content');
+    new Wikifier(body, this.text);
+
+    insertElement(passage, 'div', '', 'footer');
+
+    console.log(passage);
+
+    return passage;
 };
 
 //
@@ -108,10 +105,9 @@ Passage.prototype.render = function()
 // nothing
 //
 
-Passage.prototype.reset = function()
-{
-	console.log('resetting "' + this.title + '"');
-	this.text = this.initialText;
+Passage.prototype.reset = function () {
+    console.log('resetting "' + this.title + '"');
+    this.text = this.initialText;
 };
 
 //
@@ -126,13 +122,12 @@ Passage.prototype.reset = function()
 // a string excerpt
 //
 
-Passage.prototype.excerpt = function()
-{
-	var text = this.text.replace(/<<.*?>>/g, '');
-	text = text.replace(/!.*?\n/g, '');
-	text = text.replace(/[\[\]\/]/g, '');
-	var matches = text.match(/(.*?\s.*?\s.*?\s.*?\s.*?\s.*?\s.*?)\s/);
-	return matches[1] + '...';
+Passage.prototype.excerpt = function () {
+    var text = this.text.replace(/<<.*?>>/g, '');
+    text = text.replace(/!.*?\n/g, '');
+    text = text.replace(/[\[\]\/]/g, '');
+    var matches = text.match(/(.*?\s.*?\s.*?\s.*?\s.*?\s.*?\s.*?)\s/);
+    return matches[1] + '...';
 };
 
 //
@@ -148,10 +143,9 @@ Passage.prototype.excerpt = function()
 // a converted string
 //
 
-Passage.unescapeLineBreaks = function (text)
-{
-	if(text && text != "")
-		return text.replace(/\\n/mg,"\n").replace(/\\/mg,"\\").replace(/\r/mg,"");
-	else
-		return "";
+Passage.unescapeLineBreaks = function (text) {
+    if (text && text != "")
+        return text.replace(/\\n/mg, "\n").replace(/\\/mg, "\\").replace(/\r/mg, "");
+    else
+        return "";
 };
