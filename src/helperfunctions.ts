@@ -2,49 +2,37 @@
  * Created by jfmmeyers on 6/16/16.
  */
 /// <reference path="/Users/jfmmeyers/Library/Preferences/WebStorm2016.1/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_jquery_jquery.d.ts" />
-function randomIntFromInterval(min, max) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
+import * as Twee from "./Twee";
+import * as Main from "./main";
+import {downloadedmods} from "./main";
 
-function parsetweecodeintohtml(Tweecode:string) {
-    return Tweecode
-        .replace('\\', '\s')
-        .replace('\t', '\\t')
-        .replace('&', '&amp;')
-        .replace('<', '&lt;')
-        .replace('>', '&gt;')
-        .replace('"', '&quot;')
-        .replace('\0', '&#0;');
-}
-function GetCurrentPassages() {
+export function GetCurrentPassages() {
     return jQuery('#storeArea').children()
 }
-
-function addnewPassage(Title:string, Tags:string, PassageSHit:string) {
-    var thedim = jQuery('<div/>', {
-        "tiddler": Title,
-        "tags": Tags,
-        "created": "201601151515",
-        "modifier": "twee",
-        "twine-position": randomIntFromInterval(1, 9999) + ',' + randomIntFromInterval(1, 9999)
-    });
-    thedim.text(parsetweecodeintohtml(PassageSHit));
+export function ImportMod()
+{
+    downloadedmods.tiddlers.forEach(AddEachTilder);
+}
+function AddEachTilder(element, index, array) {
+    AddNewPassageOrReplace(element);
+}
+export function AddNewPassageOrReplace(Passage:Twee.Twee.Tiddler) {
+    if(GetCurrentPassages().attr('tiddler') == Passage.getTitle())
+    {
+        jQuery("[tiddler="+Passage.getTitle()+"]").replaceWith(Passage.toHtml())
+    }
     //add dim to passages area
-    jQuery('#storeArea').append(thedim);
+    jQuery('#storeArea').append(Passage.toHtml());
     //update the site attribute just in case the code checks it
     jQuery('#storeArea').attr('data-size', GetCurrentPassages().length);
     RefreshPassages();
 }
 
-function DownloadMod(URL:string) {
+export function DownloadMod(URL:string) {
     jQuery.get(URL, function (data) {
-        ParseTweeCode(data);
+        Main.downloadedmods.addTwee(data);
     });
 }
-function ParseTweeCode(Tweefile:string)
-{
-    
-}
-function RefreshPassages() {
+export function RefreshPassages() {
     tale.constructor();
 }
