@@ -1,7 +1,7 @@
 /**
  * Created by jfmmeyers on 6/16/16.
  */
-/// <reference path="/Users/jfmmeyers/Library/Preferences/WebStorm2016.1/javascript/extLibs/http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_jquery_jquery.d.ts" />
+/// <reference path="C:\Users\peter\.WebStorm2016.1\config\javascript\extLibs\http_github.com_DefinitelyTyped_DefinitelyTyped_raw_master_jquery_jquery.d.ts"/>
 import * as Twee from "./Twee";
 import * as Main from "./main";
 import {downloadedmods} from "./main";
