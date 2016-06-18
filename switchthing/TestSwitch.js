@@ -24,7 +24,7 @@ function createswitch(type, name, ArrayOfCasesAndCodes) {
 
 function main()
 {
-    createswitch('jscode','testswitch',[['case1','console.log(\'penis\')']])
+    createswitch('jscode','testswitch',[['case1','console.log(\'penis\')']]);
     window.testswitch_evalswitch('case1');
 }
 main();

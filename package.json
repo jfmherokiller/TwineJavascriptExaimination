@@ -1,4 +1,24 @@
 {
-  "name": "idk",
-  "version": "0.0.1"
+  "name": "twinejavahax",
+  "version": "1.0.0",
+  "description": "penis",
+  "main": "main.js",
+  "dependencies": {
+    "jquery": "^3.0.0",
+    "jquery-ui": "^1.10.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfmherokiller/TwineJavascriptExaimination.git"
+  },
+  "author": "jfm",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfmherokiller/TwineJavascriptExaimination/issues"
+  },
+  "homepage": "https://github.com/jfmherokiller/TwineJavascriptExaimination#readme"
 }

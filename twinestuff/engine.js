@@ -2455,7 +2455,7 @@ function main() {
     style.styleSheet ? (style.styleSheet.cssText = styleText) : (style.innerHTML = styleText);
     
     state.init();
-}
+} window.gmain =main;
 
 setTimeout(function f() {
     var size, bar = document.getElementById("loadingbar"), store = document.getElementById("storeArea");
