@@ -2,14 +2,26 @@
   "name": "twinejavahax",
   "version": "1.0.0",
   "description": "penis",
-  "main": "main.js",
+  "main": "src/main.js",
   "dependencies": {
     "jquery": "^3.0.0",
     "jquery-ui": "^1.10.5"
   },
-  "devDependencies": {},
+  "browserify": {
+    "transform": [
+      "browserify-css",
+      "browserify-shim",
+      "uglifyify"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "$"
+  },
+  "devDependencies": {
+    "browserify-css": "^0.9.1"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "browserify . -s main -o magic.js"
   },
   "repository": {
     "type": "git",
