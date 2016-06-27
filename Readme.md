@@ -15,7 +15,7 @@ Download and parse a twee code file into the downloadedmods array
 ```
 window.DownloadMod("insert twee url here");
 ```
-Import the mod into the story and start the story back from the begining
+Import the mod into the story and start the story back from the beginning
 ```
 window.ImportMod();
 ```
