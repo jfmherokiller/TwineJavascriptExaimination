@@ -4,7 +4,6 @@
 
 var Twee = require("./Twee");
 var downloadedmods = new Twee.TiddlyWiki("Moddy");
-exports.downloadedmods = downloadedmods;
 var storeareatemp = jQuery('#storeArea');
 function RefreshStoreTemp() {
     storeareatemp = jQuery('#storeArea');
@@ -53,9 +52,10 @@ function AddNewPassageOrReplace(TehPassage, Import) {
     }
 }
 
-function DownloadMod(URL) {
+function DownloadMod(URL, callme) {
     jQuery.get(URL, function (data) {
         downloadedmods.addTwee(data);
+        callme();
     });
 }
 
@@ -86,4 +86,4 @@ exports.RefreshPassages = RefreshPassages;
 exports.RefreshGame = RefreshGame;
 exports.ImportMod = ImportMod;
 exports.AddNewPassageOrReplace = AddNewPassageOrReplace;
-
+exports.downloadedmods = downloadedmods;
