@@ -26,7 +26,7 @@ function TiddlyWiki(nAuthor) {
     this.toHtml = toHtml;
     this.addTiddler = addTiddler;
     this.GetTiddlers = GetTiddlers;
-
+    this.tiddlers = tiddlers;
     // implementation
 
     function addTwee(source) {
@@ -51,6 +51,10 @@ function TiddlyWiki(nAuthor) {
 
     function GetTiddlers() {
         return tiddlers;
+    }
+    function Getsize()
+    {
+        return tiddlers.length;
     }
 }
 //

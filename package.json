@@ -9,16 +9,12 @@
   },
   "browserify": {
     "transform": [
-      "browserify-css",
       "browserify-shim",
-      "uglifyify"
+      "uglifyify",
+      "brfs"
     ]
   },
   "browserify-shim": {
-    "jquery": "$"
-  },
-  "devDependencies": {
-    "browserify-css": "^0.9.1"
   },
   "scripts": {
     "build": "browserify . -s main -o magic.js"
