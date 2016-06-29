@@ -11,6 +11,7 @@ var listofmods = jQuery('<div>').appendTo(mybox);
 
 DownloadModBox.append(jQuery('<label> PutModUrlHere:</label>'));
 DownloadModBox.append(jQuery('<input type="text" id="modurl" value="" >'));
+//the download mod button
 DownloadModBox.append(jQuery('<button id="modbutton">Download Mod</button>').click(function () {
     jQuery('#modbutton').prop("disabled", true);
    Help.DownloadMod(jQuery('#modurl').val(), function() {
@@ -18,6 +19,7 @@ DownloadModBox.append(jQuery('<button id="modbutton">Download Mod</button>').cli
        jQuery('#modbutton').prop("disabled", false);
    });
 }));
+//generate the list of mods
 function Generatelist() {
     var cList = $('<ul>');
     if (Help.downloadedmods.GetTiddlers().length == 0) {
@@ -41,9 +43,12 @@ function Generatelist() {
     });
     listofmods.html(cList);
 }
+
 function showWindow() {
     Generatelist();
     mybox.dialog();
 }
+
+
 exports.ShowWindow = showWindow;
 exports.GenerateList = Generatelist;
