@@ -1,0 +1,61 @@
+:: Abitte [areas abitte]
+<<nobr>><<if $mannedShop is 0>><<display RevecroixRandomizer>><<set $professor = $randomRevecroix; $mannedShop = 1; $professorDesc = either("sleek","plump","round","fat","blubbery","busty","blubber-stuffed","blimplike","gelatinous"); $professorVoice = either("singsong","cheery","chirpy","gruff","warbling","shrill","deep","rich","melodic","honeyed","smooth","silky")>>
+
+<<set $randomizer = random(1,12)>>
+
+/% Randomized abitte selection.
+Admin is based primarily on biome, but this is a chance that it'll override that with someone at random. (1 in 12) %/
+<<if $randomizer is 1>>
+<<set $administreStatue = either("Nefirian","Nefirian","Nefirian","Nameless","Phoenix","Phoenix","Kaolan","Kaolan","Kaolan","Giovan","Giovan","Ander","Ander","Lyric'Ai","Lyric'Ai","Reks","Reks","Andreu","Andreu","Eliot","Na'than & Eva","Na'than & Eva"); $randomizer = random(1,64)>>
+
+<<if $randomizer is 1>><<set $administreStatue = "a bear">><<endif>><<endif>><<endif>>
+
+/% Image setup %/
+
+<<if $administreStatue is "Nefirian">><<set $adminStatue = "abitte_nefirian">>
+<<elseif $administreStatue is "Phoenix">><<set $adminStatue = "abitte_phoenix">>
+<<elseif $administreStatue is "Nameless">><<set $adminStatue = "abitte_nameless">>
+
+<<else>><<set $adminStatue = "abitte_nefirian">><<endif>>
+
+<<endnobr>>
+<center>[img[$adminStatue]]</center><<if $service is 0>>
+You enter the abitte, taking note of the <affirmative>''pristine statue of <<print $administreStatue>>''</affirmative> seated atop its pedestal in the center of the round room.
+Nearby, a <<print $professorDesc>> <<print $professor>> //Professor// nods a silent greeting to you before returning to their duties in the far end of the room.
+<<endif>><<nobr>>
+
+
+<<endnobr>><<if ($service is 1)>><<if ($seenFleshStatue is 0) and ($administreStatue neq "Eliot") and ($administreStatue neq "Kaolan")>>\
+\
+You approach the statue of <<print $administreStatue>>, admiring how lifelike it is.
+Lifelike... and //''fleshy''//.
+It's like <<print $administreStatue>> <<if $administreStatue is "Na'than & Eva">>are<<else>>is<<endif>> standing before you, gazing <<if ($administreStatue is "Nefirian") or ($administreStatue is "Andreu")>>mischeviously<<elseif ($administreStatue is "Nameless") or ($administreStatue is "Tristan")>>anxiously<<elseif ($administreStatue is "Phoenix") or ($administreStatue is "Reks")>>challengingly<<elseif $administreStatue is "Na'than & Eva">>powerfully<<elseif ($administreStatue is "Giovan") or ($administreStatue is "Ander")>>casually<<elseif $administreStatue is "Lyric'ai">>smugly<<endif>> down...
+
+//...did it just ''blink?!''//
+''It's breathing.'' The statue is //breathing, and blinking//, and you--...
+
+"Don't be afraid," comes the <<print $professorVoice>> voice of the //Professor// from just behind you.
+"It's a //Revecroit// statue, crafted from living flesh."
+
+It says this as though there is nothing at all... //''unusual''// about it.
+//Or alarming.//<<if $sanity gt 60>><<set $sanity -= 3>><<endif>>
+
+<center><<button [[Offer tribute.|AbitteTribute][$service = 0]]>><<button [[Speak.|AbitteCommands][$service = 0]]>></center><<set $seenFleshStatue = 1; $respectsPaid = 1>><<elseif ($seenFleshStatue is 1) or ($administreStatue is "Eliot") or ($administreStatue is "Kaolan")>>
+You approach the statue of <<print $administreStatue>>, watching with subtle anxiety as its eyes blink and follow you.<<set $respectsPaid = 1>>\
+<<display AdminStatues>>\
+<center><<button [[Offer tribute.|AbitteTribute][$service = 0]]>><<button [[Speak.|AbitteCommands][$service = 0]]>></center><<endif>><<endif>><<nobr>>
+
+
+<<endnobr>><<display BodySystems>><<display Alert>><<display Effects>><<display Vitality>><center><framed><<nobr>>
+
+
+<<button [[Rest.|passage()][$service = 0; $pain -= random(3,6)]]>>
+
+<<button [[View the statue.|passage()][$service = 1]]>>
+
+<<button [[Talk to the Professor.|passage()]]>>
+
+
+<<endnobr>></framed>
+<<button [[Leave.|Explore][$itemPool = 0; $encounterPool = 0; $mannedShop = 0; $service = 0; $explore = 3; $indoorZone = 0; $dungeonType = 0; $location = $saveBiome]]>></center><<if $pain lt 0>><<set $pain = 0>><<endif>>
+
